@@ -10,6 +10,7 @@ import com.haulmont.cuba.security.app.UserManagementServiceBean;
 import com.haulmont.cuba.security.entity.User;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.UUID;
 
 public class ExtUserManagementServiceBean extends UserManagementServiceBean {
@@ -35,9 +36,24 @@ public class ExtUserManagementServiceBean extends UserManagementServiceBean {
             if(pswdConfig.getUsePswdHistory())
             {
                 PasswordHistory passwordHistory=new PasswordHistory();
+                passwordHistory.setCreatedAt(new Date());
                 passwordHistory.setPasswordHash(newPasswordHash);
                 passwordHistory.setUser(user);
                 em.persist(passwordHistory);
+
+                Query qCount=em.createQuery("select count(ph) from pswdplus$PasswordHistory ph where ph.user.id=:userId");
+                qCount.setParameter("userId",userId);
+                long historicPasswordsCount=(Long)qCount.getSingleResult();
+
+                if(historicPasswordsCount>=pswdConfig.getPswdHistoryLength())
+                {
+                    Query qOldest=em.createQuery("select ph from pswdplus$PasswordHistory ph where ph.user.id=:userId order by ph.createdAt");
+                    qOldest.setParameter("userId", userId);
+                    PasswordHistory ph=(PasswordHistory) qOldest.getFirstResult();
+                    em.setSoftDeletion(false);
+                    em.remove(ph);
+                }
+
             }
 
             user.setPassword(newPasswordHash);
@@ -49,6 +65,8 @@ public class ExtUserManagementServiceBean extends UserManagementServiceBean {
             query.executeUpdate();
 
             tx.commit();
+
+            //missing catch in case of query errors...
 
         } finally {
             tx.end();

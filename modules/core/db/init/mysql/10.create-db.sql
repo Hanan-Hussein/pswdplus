@@ -10,6 +10,7 @@ create table PSWDPLUS_PASSWORD_HISTORY (
     DELETED_BY varchar(50),
     --
     USER_ID varchar(32),
+    CREATED_AT datetime(3),
     PASSWORD_HASH varchar(255),
     --
     primary key (ID)
