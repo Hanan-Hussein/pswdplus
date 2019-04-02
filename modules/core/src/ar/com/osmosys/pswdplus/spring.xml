@@ -7,5 +7,6 @@
 
     <!-- Annotation-based beans -->
     <context:component-scan base-package="ar.com.osmosys.pswdplus"/>
+    <bean id="cuba_UserManagementService" class="ar.com.osmosys.pswdplus.service.ExtUserManagementServiceBean"/>
 
 </beans>

@@ -1,4 +1,3 @@
--- begin PSWDPLUS_PASSWORD_HISTORY
 create table PSWDPLUS_PASSWORD_HISTORY (
     ID varchar(32),
     VERSION integer not null,
@@ -13,5 +12,4 @@ create table PSWDPLUS_PASSWORD_HISTORY (
     PASSWORD_HASH varchar(255),
     --
     primary key (ID)
-)^
--- end PSWDPLUS_PASSWORD_HISTORY
+);
