@@ -50,7 +50,7 @@ public class ExtUserManagementServiceBean extends UserManagementServiceBean {
                 qCount.setParameter("userId",userId);
                 long historicPasswordsCount=(Long)qCount.getSingleResult();
 
-                if(historicPasswordsCount>pswdConfig.getPswdHistoryLength())
+                if(historicPasswordsCount>=pswdConfig.getPswdHistoryLength())
                 {
                     //...and remove the oldest one if the history log is full
                     Query qOldest=em.createQuery("select ph from pswdplus$PasswordHistory ph where ph.user.id=:userId order by ph.createdAt");

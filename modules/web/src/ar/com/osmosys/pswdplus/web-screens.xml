@@ -2,4 +2,6 @@
 <screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
     <screen id="screen"
             template="ar/com/osmosys/pswdplus/web/screens/screen.xml"/>
+    <screen id="sec$User.changePassword"
+            template="ar/com/osmosys/pswdplus/web/screens/ext-change-password-dialog.xml"/>
 </screen-config>
