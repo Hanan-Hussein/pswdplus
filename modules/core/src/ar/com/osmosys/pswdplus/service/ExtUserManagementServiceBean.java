@@ -6,6 +6,7 @@ import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Query;
 import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.global.EntityAccessException;
+import com.haulmont.cuba.core.global.PasswordEncryption;
 import com.haulmont.cuba.security.app.UserManagementServiceBean;
 import com.haulmont.cuba.security.entity.User;
 
@@ -17,6 +18,9 @@ public class ExtUserManagementServiceBean extends UserManagementServiceBean {
 
     @Inject
     PswdConfig pswdConfig;
+
+    @Inject
+    PasswordEncryption passwordEncryption;
 
     /*
     Adds an entry into PasswordHistory table. Later on,
@@ -35,9 +39,10 @@ public class ExtUserManagementServiceBean extends UserManagementServiceBean {
 
             if(pswdConfig.getUsePswdHistory())
             {
+                //we store the current password into the password history...
                 PasswordHistory passwordHistory=new PasswordHistory();
                 passwordHistory.setCreatedAt(new Date());
-                passwordHistory.setPasswordHash(newPasswordHash);
+                passwordHistory.setPasswordHash(user.getPassword());
                 passwordHistory.setUser(user);
                 em.persist(passwordHistory);
 
@@ -45,8 +50,9 @@ public class ExtUserManagementServiceBean extends UserManagementServiceBean {
                 qCount.setParameter("userId",userId);
                 long historicPasswordsCount=(Long)qCount.getSingleResult();
 
-                if(historicPasswordsCount>=pswdConfig.getPswdHistoryLength())
+                if(historicPasswordsCount>pswdConfig.getPswdHistoryLength())
                 {
+                    //...and remove the oldest one if the history log is full
                     Query qOldest=em.createQuery("select ph from pswdplus$PasswordHistory ph where ph.user.id=:userId order by ph.createdAt");
                     qOldest.setParameter("userId", userId);
                     PasswordHistory ph=(PasswordHistory) qOldest.getFirstResult();

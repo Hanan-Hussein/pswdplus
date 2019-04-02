@@ -14,7 +14,7 @@ public class PasswordServiceBean implements PasswordService {
 
 
     @Inject
-    Persistence persistence;
+    private Persistence persistence;
 
     @Override
     public boolean isPasswordInHistory(UUID userId, String passwordHash)
@@ -24,7 +24,7 @@ public class PasswordServiceBean implements PasswordService {
         Transaction tx=persistence.createTransaction();
         EntityManager em=persistence.getEntityManager();
 
-        Query qCount=em.createQuery("select count(ph) from pswd$PasswordHistory ph where ph.user.id=:userId and ph.passwordHash=:passwordHash");
+        Query qCount=em.createQuery("select count(ph) from pswdplus$PasswordHistory ph where ph.user.id=:userId and ph.passwordHash=:passwordHash");
         qCount.setParameter("userId",userId);
         qCount.setParameter("passwordHash",passwordHash);
         long count=(Long) qCount.getSingleResult();

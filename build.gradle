@@ -17,7 +17,7 @@ buildscript {
     }
 }
 
-def modulePrefix = 'app'
+def modulePrefix = 'pswdplus'
 
 def globalModule = project(":${modulePrefix}-global")
 def coreModule = project(":${modulePrefix}-core")
