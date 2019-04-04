@@ -35,8 +35,8 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'ar.com.osmosys.pswdplus'
-        version = '0.1'
-        isSnapshot = true
+        version = '1.0.2'
+        isSnapshot = false
     }
     tomcat {
         dir = "$project.rootDir/deploy/tomcat"
