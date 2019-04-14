@@ -1,5 +1,5 @@
 # 1.Introduction 
-cuba-pswdplus is a CUBA Platform component that provides "out of the box" password history validation to an existing application. It allows the app administrator to activate and configure the validation. 
+**cuba-pswdplus** is a CUBA Platform component that provides "out of the box" password history validation to an existing application. It allows the app administrator to activate and configure the validation. 
 
 
 # 2.Installation
