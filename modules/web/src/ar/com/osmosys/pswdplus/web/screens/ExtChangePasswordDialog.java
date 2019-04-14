@@ -1,6 +1,8 @@
 package ar.com.osmosys.pswdplus.web.screens;
 
 import ar.com.osmosys.pswdplus.service.PasswordService;
+import com.haulmont.cuba.core.global.AppBeans;
+import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.gui.app.security.user.changepassw.ChangePasswordDialog;
 import com.haulmont.cuba.gui.components.ValidationErrors;
 
@@ -13,6 +15,8 @@ public class ExtChangePasswordDialog extends ChangePasswordDialog {
     @Inject
     PasswordService passwordService;
 
+
+    protected Messages messages= AppBeans.get(Messages.class);
 
     @Override
     protected void postValidate(ValidationErrors errors) {
@@ -39,7 +43,8 @@ public class ExtChangePasswordDialog extends ChangePasswordDialog {
                 errors.add(passwField, getMessage("currentPasswordWarning"));
 
             } else if(passwordService.isPasswordInHistory(targetUserId,passwordEncryption.getPasswordHash(targetUserId,password))){
-                errors.add(passwField,getMessage("passwordAlreadyUsed"));
+                //errors.add(passwField,getMessage("ar.com.osmosys.pswdplus.web.screens","passwordAlreadyUsed"));
+                errors.add(passwField,messages.getMessage(getClass(),"passwordAlreadyUsed"));
 
             } else if (!Objects.equals(password, passwordConfirmation)) {
                 errors.add(confirmPasswField, getMessage("passwordsDoNotMatch"));
