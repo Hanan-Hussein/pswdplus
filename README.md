@@ -26,7 +26,7 @@ Add a custom application component to your project:
 
 Once you've installed the component and run your app for the first time, open the Application Properties screen in the Administrator menu. You will see a new entry named **pswdplus**:
 
-![Screenshot Application Properties](https://github.com/pakuda/pswdplus/blob/feature/readme/img/appProperties.png)
+![Screenshot Application Properties](https://github.com/pakuda/pswdplus/blob/master/img/appProperties.png)
 
 There are two properties to configure:
 
@@ -37,7 +37,7 @@ There are two properties to configure:
 ## In Action
 The validation is performed when the user changes his password himself or it is changed by the admin. If the entered new password is already in the password history log, then an alert is shown on the screen.
 
-![Screenshot Alert](https://github.com/pakuda/pswdplus/blob/feature/readme/img/alertMessage.png)
+![Screenshot Alert](https://github.com/pakuda/pswdplus/blob/master/img/alertMessage.png)
 
 
 
