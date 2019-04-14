@@ -24,3 +24,7 @@ Add a custom application component to your project:
 
 ## Using the component
 
+Once you've installed the component and run your app for the first time, open the Application Properties screen in the Administrator menu. You will see a new entry named **pswdplus**:
+
+
+
