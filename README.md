@@ -22,9 +22,25 @@ Add a custom application component to your project:
 * Artifact name: `pswdplus-global`
 * Version: *add-on version*
 
-## Using the component
+## Configuration
 
 Once you've installed the component and run your app for the first time, open the Application Properties screen in the Administrator menu. You will see a new entry named **pswdplus**:
+
+![Screenshot Application Properties](https://github.com/pakuda/pswdplus/blob/feature/readme/img/appProperties.png)
+
+There are two properties to configure:
+
+* *usePswdHistory*: boolean value, `true` if you want to enable password history. Setting it to `false` will not delete already stored passwords.
+
+* *pswdHistoryLength*: number of used passwords that will be stored in the database for a each user. For instance, if `pswdHistoryLength=10` the component will validate a new password against the last 10 used passwords for that user. The password log follows a FIFO rule, once a new password is stored in the log, the oldest is hard deleted.
+
+## In Action
+The validation is performed when the user changes his password himself or it is changed by the admin. If the entered new password is already in the password history log, then an alert is shown on the screen.
+
+![Screenshot Alert](https://github.com/pakuda/pswdplus/blob/feature/readme/img/alertMessage.png)
+
+
+
 
 
 
