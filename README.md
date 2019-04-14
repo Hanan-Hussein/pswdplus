@@ -2,8 +2,10 @@
 [![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
 
-# Introduction 
-**cuba-pswdplus** is a CUBA Platform component that provides "out of the box" password history validation to an existing application. It allows the app administrator to activate and configure the validation. 
+## What is this component for ? 
+**cuba-pswdplus** is a CUBA Platform component that provides "out of the box" password history validation to an existing application. It allows the app administrator to activate and configure the validation.  
+
+A coming version will add support for password expiration and thus, it will allow a CUBA application to be deployed in corporate environments with strict password requirements.
 
 
 ## Installation
