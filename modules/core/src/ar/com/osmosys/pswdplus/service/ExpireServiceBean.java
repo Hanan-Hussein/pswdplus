@@ -29,26 +29,34 @@ public class ExpireServiceBean implements ExpireService, Callable {
     public String expireOldPasswords()
     {
 
+        String expiredUsers="";
+
         if(pswdConfig.getUsePswdExpiration())
         {
-
             int days=pswdConfig.getDaysToPswdExpiration();
-            String expiredUsers="Expired users:";
             Transaction tx=persistence.createTransaction();
             EntityManager em=persistence.getEntityManager();
             List<User> users;
 
             users=em.createQuery("select u from sec$User u where u.changePasswordAtNextLogon<>1").getResultList();
-            Query qLatestPwdChange=em.createQuery("select max(ph.createdAt) from pswdplus$PasswordHistory ph where ph.user.id=:userId");
+
 
             for (User user:users)
             {
+                Query qLatestPwdChange=em.createQuery("select max(ph.createdAt) from pswdplus$PasswordHistory ph where ph.user.id=:userId");
                 qLatestPwdChange.setParameter("userId", user.getId());
-                Date lastPasswordChange=(Date)qLatestPwdChange.getSingleResult();
-                if (isPasswordExpired(lastPasswordChange,days))
+
+                try{
+                    Date lastPasswordChange=(Date)qLatestPwdChange.getSingleResult();
+                    if (isPasswordExpired(lastPasswordChange,days))
+                    {
+                        user.setChangePasswordAtNextLogon(true);
+                        expiredUsers=expiredUsers + user.getLogin() + ",";
+                    }
+                }
+                catch (NullPointerException e)
                 {
-                    user.setChangePasswordAtNextLogon(true);
-                    expiredUsers=expiredUsers + user.getLogin() + ",";
+                    //no lastPasswordChange date for that user
                 }
 
             }
@@ -57,7 +65,7 @@ public class ExpireServiceBean implements ExpireService, Callable {
 
         }
 
-        return null;
+        return expiredUsers;
     }
 
     private boolean isPasswordExpired(Date lastChange, int validityDays)

@@ -29,6 +29,8 @@ public class PasswordServiceBean implements PasswordService {
         qCount.setParameter("passwordHash",passwordHash);
         long count=(Long) qCount.getSingleResult();
 
+        tx.commit();
+
         if(count>0)
             result=true;
 
