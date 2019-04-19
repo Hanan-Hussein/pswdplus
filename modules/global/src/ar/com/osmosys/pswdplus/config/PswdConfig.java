@@ -10,12 +10,11 @@ import com.haulmont.cuba.core.config.defaults.Default;
 @Source(type= SourceType.DATABASE)
 public interface PswdConfig extends Config {
 
-    /*
+
     @Property("pswdplus.daysToPswdExpiration")
     @Default("30")
     Integer getDaysToPswdExpiration();
     void setDaysToPswdExpiration(Integer daysToPswdExpiration);
-    */
 
     @Property("pswdplus.pswdHistoryLength")
     @Default("10")
@@ -27,11 +26,10 @@ public interface PswdConfig extends Config {
     Boolean getUsePswdHistory();
     void setUsePswdHistory(Boolean usePswdHistory);
 
-    /*
+
     @Property("pswdplus.usePswdExpiration")
-    @Default("false")
+    @Default("true")
     Boolean getUsePswdExpiration();
     void setUsePswdExpiration(Boolean usePswdExpiration);
-    */
-    
+
 }

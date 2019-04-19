@@ -12,6 +12,8 @@
             <map>
                 <entry key="pswdplus_PasswordService"
                        value="ar.com.osmosys.pswdplus.service.PasswordService"/>
+                <entry key="pswdplus_ExpireService"
+                       value="ar.com.osmosys.pswdplus.service.ExpireService"/>
             </map>
         </property>
     </bean>
