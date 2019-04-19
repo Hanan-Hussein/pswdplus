@@ -39,6 +39,17 @@ The validation is performed when the user changes his password himself or it is 
 
 ![Screenshot Alert](https://github.com/pakuda/pswdplus/blob/master/img/alertMessage.png)
 
+## Localization
+At this version, only English and Spanish messages are supported.
+
+## Database support
+At this version, only MySQL database is supported out of the box. Scripts for any other database engine should be created by the user.
+
+## Log table
+The last n passwords are stored in a table named `PSWDPLUS_PASSWORD_HISTORY`. As said before, there is no need to maintain the table, since it follows a FIFO rule. Once a new record for a user is created, the component deletes the oldest one.
+
+
+
 
 
 
