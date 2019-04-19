@@ -6,6 +6,7 @@ import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Query;
 import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.global.EntityAccessException;
+import com.haulmont.cuba.core.global.LoadContext;
 import com.haulmont.cuba.core.global.PasswordEncryption;
 import com.haulmont.cuba.security.app.UserManagementServiceBean;
 import com.haulmont.cuba.security.entity.User;
@@ -37,11 +38,13 @@ public class ExtUserManagementServiceBean extends UserManagementServiceBean {
                 throw new EntityAccessException(User.class, userId);
             }
 
+            Date changeDate=new Date();
+
             if(pswdConfig.getUsePswdHistory())
             {
                 //we store the current password into the password history...
                 PasswordHistory passwordHistory=new PasswordHistory();
-                passwordHistory.setCreatedAt(new Date());
+                passwordHistory.setCreatedAt(changeDate);
                 passwordHistory.setPasswordHash(user.getPassword());
                 passwordHistory.setUser(user);
                 em.persist(passwordHistory);
