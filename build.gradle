@@ -43,7 +43,7 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'ar.com.osmosys.pswdplus'
-        version = "1.0.4"
+        version = "1.0.5"
         isSnapshot = false
     }
     tomcat {
@@ -59,7 +59,7 @@ dependencies {
 
 }
 
-def mysql = 'mysql:mysql-connector-java:5.1.46'
+def mssql = 'com.microsoft.sqlserver:mssql-jdbc:7.0.0.jre8'
 
 configure([globalModule, coreModule, webModule]) {
     apply(plugin: 'java')
@@ -108,8 +108,8 @@ configure(coreModule) {
     dependencies {
         compile(globalModule)
         provided(servletApi)
-        jdbc(mysql)
-        testRuntime(mysql)
+        jdbc(mssql) { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
+        testRuntime(mssql) { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
 
     }
 
@@ -130,21 +130,19 @@ configure(coreModule) {
     }
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
-        connectionParams = '?useSSL=false&allowMultiQueries=true'
-        dbms = 'mysql'
-        host = '192.168.1.2'
+        dbms = 'mssql'
+        host = '192.168.1.243'
         dbName = 'pswdplus'
-        dbUser = 'root'
-        dbPassword = 'kawasaki'
+        dbUser = 'sa'
+        dbPassword = 'Varcelona29'
     }
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
-        connectionParams = '?useSSL=false&allowMultiQueries=true'
-        dbms = 'mysql'
-        host = '192.168.1.2'
+        dbms = 'mssql'
+        host = '192.168.1.243'
         dbName = 'pswdplus'
-        dbUser = 'root'
-        dbPassword = 'kawasaki'
+        dbUser = 'sa'
+        dbPassword = 'Varcelona29'
     }
 }
     
