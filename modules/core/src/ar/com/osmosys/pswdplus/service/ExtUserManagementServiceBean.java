@@ -17,6 +17,8 @@ import java.util.UUID;
 
 public class ExtUserManagementServiceBean extends UserManagementServiceBean {
 
+    private static final String CHANGE_PASSWORD_VIEW = "user.changePassword";
+
     @Inject
     PswdConfig pswdConfig;
 
@@ -43,7 +45,7 @@ public class ExtUserManagementServiceBean extends UserManagementServiceBean {
             if(pswdConfig.getUsePswdHistory())
             {
                 //we store the current password into the password history...
-                PasswordHistory passwordHistory=new PasswordHistory();
+                PasswordHistory passwordHistory=metadata.create(PasswordHistory.class);
                 passwordHistory.setCreatedAt(changeDate);
                 passwordHistory.setPasswordHash(user.getPassword());
                 passwordHistory.setUser(user);

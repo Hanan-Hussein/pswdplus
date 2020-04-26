@@ -1,8 +1,7 @@
-
 buildscript {
-    ext.cubaVersion = '6.10.9'
+    ext.cubaVersion = '7.2.4'
     repositories {
-        
+
         mavenLocal()
         maven {
             url 'https://repo.cuba-platform.com/content/groups/work'
@@ -11,14 +10,14 @@ buildscript {
                 password(rootProject.hasProperty('repoPass') ? rootProject['repoPass'] : 'cuba123')
             }
 
-            maven{
+            maven {
 
-                url  "https://dl.bintray.com/aleksey-stukalov/cuba-components"
+                url "https://dl.bintray.com/aleksey-stukalov/cuba-components"
 
             }
 
         }
-        
+
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
@@ -37,13 +36,12 @@ def webModule = project(":${modulePrefix}-web")
 def servletApi = 'javax.servlet:javax.servlet-api:3.1.0'
 
 
-apply(plugin: 'idea')
 apply(plugin: 'cuba')
 
 cuba {
     artifact {
         group = 'ar.com.osmosys.pswdplus'
-        version = "1.0.7"
+        version = '1.1.0'
         isSnapshot = false
     }
     tomcat {
@@ -59,12 +57,11 @@ dependencies {
 
 }
 
-def mssql = 'com.microsoft.sqlserver:mssql-jdbc:7.0.0.jre8'
+def mysql = 'mysql:mysql-connector-java:5.1.46'
 
 configure([globalModule, coreModule, webModule]) {
     apply(plugin: 'java')
     apply(plugin: 'maven')
-    apply(plugin: 'idea')
     apply(plugin: 'cuba')
 
     dependencies {
@@ -82,6 +79,12 @@ configure([globalModule, coreModule, webModule]) {
 }
 
 configure(globalModule) {
+    dependencies {
+        if (!JavaVersion.current().isJava8()) {
+            runtime('javax.xml.bind:jaxb-api:2.3.1')
+            runtime('org.glassfish.jaxb:jaxb-runtime:2.3.1')
+        }
+    }
     entitiesEnhancing {
         main {
             enabled = true
@@ -95,7 +98,7 @@ configure(globalModule) {
         }
     }
 
-    
+
 }
 
 configure(coreModule) {
@@ -107,21 +110,14 @@ configure(coreModule) {
 
     dependencies {
         compile(globalModule)
-        provided(servletApi)
-        jdbc(mssql) { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
-        testRuntime(mssql) { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
+        compileOnly(servletApi)
+        jdbc(mysql)
+        testRuntime(mysql)
 
     }
 
-    task cleanConf(description: 'Cleans up conf directory') {
-        doLast {
-            def dir = new File(cuba.tomcat.dir, "/conf/${modulePrefix}-core")
-            if (dir.isDirectory()) {
-                ant.delete(includeemptydirs: true) {
-                    fileset(dir: dir, includes: '**/*', excludes: 'local.app.properties')
-                }
-            }
-        }
+    task cleanConf(description: 'Cleans up conf directory', type: Delete) {
+        delete "$cuba.appHome/${modulePrefix}-core/conf"
     }
 
     task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
@@ -130,33 +126,35 @@ configure(coreModule) {
     }
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
-        dbms = 'mssql'
-        host = '192.168.1.243'
-        dbName = 'pswdplus'
-        dbUser = 'sa'
-        dbPassword = 'Varcelona29'
+        dbms = 'mysql'
+        host = '192.168.2.2'
+        dbName = 'pswdplus72'
+        dbUser = 'root'
+        dbPassword = 'kawasaki'
+        connectionParams = '?useSSL=false&allowMultiQueries=true'
     }
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
-        dbms = 'mssql'
-        host = '192.168.1.243'
-        dbName = 'pswdplus'
-        dbUser = 'sa'
-        dbPassword = 'Varcelona29'
+        dbms = 'mysql'
+        host = '192.168.2.2'
+        dbName = 'pswdplus72'
+        dbUser = 'root'
+        dbPassword = 'kawasaki'
+        connectionParams = '?useSSL=false&allowMultiQueries=true'
     }
 }
-    
+
 configure(webModule) {
     configurations {
         webcontent
     }
 
     dependencies {
-        provided(servletApi)
+        compileOnly(servletApi)
         compile(globalModule)
 
     }
-    
+
     task webArchive(type: Zip) {
         from file("$buildDir/web")
         from file('web')
@@ -170,7 +168,7 @@ configure(webModule) {
     task deployConf(type: Copy) {
         from file('src')
         include "ar/com/osmosys/pswdplus/**"
-        into "$cuba.tomcat.dir/conf/${modulePrefix}"
+        into "$cuba.appHome/${modulePrefix}/conf"
     }
 
     task clearMessagesCache(type: CubaClearMessagesCache) {
@@ -178,15 +176,8 @@ configure(webModule) {
     }
     deployConf.dependsOn clearMessagesCache
 
-    task cleanConf(description: 'Cleans up conf directory') {
-        doLast {
-            def dir = new File(cuba.tomcat.dir, "/conf/${modulePrefix}")
-            if (dir.isDirectory()) {
-                ant.delete(includeemptydirs: true) {
-                    fileset(dir: dir, includes: '**/*', excludes: 'local.app.properties')
-                }
-            }
-        }
+    task cleanConf(description: 'Cleans up conf directory', type: Delete) {
+        delete "$cuba.appHome/${modulePrefix}/conf"
     }
 
     task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
@@ -194,9 +185,6 @@ configure(webModule) {
         appJars(modulePrefix + '-global', modulePrefix + '-web')
     }
 }
-
-
-
 
 
 task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf") {
@@ -212,13 +200,10 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefi
                 socket(server: 'localhost', port: '8787')
             }
         }
-        start.execute()
     }
 }
+restart.finalizedBy start
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.3.1'
-}
 
 subprojects {
     apply plugin: 'com.jfrog.bintray'

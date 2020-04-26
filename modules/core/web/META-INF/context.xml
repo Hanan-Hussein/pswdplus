@@ -1,14 +1,5 @@
 <Context>
     <!-- Database connection -->
-    <Resource driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-              maxIdle="2"
-              maxTotal="20"
-              maxWaitMillis="5000"
-              name="jdbc/CubaDS"
-              password="Varcelona29"
-              type="javax.sql.DataSource"
-              url="jdbc:sqlserver://192.168.1.243;databaseName=pswdplus"
-              username="sa"/>
     <!-- Switch off session serialization -->
     <Manager pathname=""/>
     <!--<Resource driverClassName="org.hsqldb.jdbc.JDBCDriver"
@@ -20,13 +11,13 @@
           type="javax.sql.DataSource"
           url="jdbc:hsqldb:hsql://localhost/pswdplus"
           username="sa"/>-->
-    <!--<Resource driverClassName="com.mysql.jdbc.Driver"
-          maxIdle="2"
-          maxTotal="20"
-          maxWaitMillis="5000"
-          name="jdbc/CubaDS"
-          password="kawasaki"
-          type="javax.sql.DataSource"
-          url="jdbc:mysql://192.168.1.2/pswdplus?useSSL=false&amp;allowMultiQueries=true"
-          username="root"/>-->
+    <Resource driverClassName="com.mysql.jdbc.Driver"
+              maxIdle="2"
+              maxTotal="20"
+              maxWaitMillis="5000"
+              name="jdbc/CubaDS"
+              password="kawasaki"
+              type="javax.sql.DataSource"
+              url="jdbc:mysql://192.168.2.2/pswdplus72?useSSL=false&amp;allowMultiQueries=true"
+              username="root"/>
 </Context>
