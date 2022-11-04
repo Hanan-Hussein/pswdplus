@@ -15,6 +15,10 @@ buildscript {
                 url "https://dl.bintray.com/aleksey-stukalov/cuba-components"
 
             }
+            maven{
+                url "https://jitpack.io"
+
+            }
 
         }
 
@@ -23,10 +27,34 @@ buildscript {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
 
         //bintray upload plugin
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0"
+//        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0"
     }
 }
 
+
+
+plugins {
+    id ('maven-publish')
+
+}
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Hanan-Hussein/pswdplus")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+        maven {
+            url "https://jitpack.io"
+
+        }
+
+    }
+
+}
 def modulePrefix = 'pswdplus'
 
 def globalModule = project(":${modulePrefix}-global")
@@ -40,7 +68,7 @@ apply(plugin: 'cuba')
 
 cuba {
     artifact {
-        group = 'ar.com.osmosys.pswdplus'
+        group = 'com.github.Hanan-Hussein.pswdplus'
         version = '1.1.0'
         isSnapshot = false
     }
@@ -205,39 +233,39 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefi
 restart.finalizedBy start
 
 
-subprojects {
-    apply plugin: 'com.jfrog.bintray'
-
-    bintray {
-        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-
-        configurations = ['archives']
-
-        // make files public ?
-        publish = true
-        // override existing artifacts?
-        override = true
-
-        // metadata
-        pkg {
-            repo = 'main'           // your repository name
-            name = 'cuba-pswdplus'  // package name - it will be created upon upload
-            desc = 'Password history and expiration for CUBA Platform'  // optional package description
-
-            // organization name, if your repository is created inside an organization.
-            // remove this parameter if you don't have an organization
-            //userOrg = 'jupiter-org'
-
-            websiteUrl = 'https://github.com/pakuda/pswdplus'
-            issueTrackerUrl = 'https://github.com/pakuda/pswdplus/issues'
-            vcsUrl = 'https://github.com/pakuda/pswdplus.git' // mandatory for Open Source projects
-
-            licenses = ["Apache-2.0"]
-            labels = ['cuba-platform', 'opensource']
-
-            githubRepo = 'pakuda/pswdplus' // optional Github repository
-            githubReleaseNotesFile = 'README.md' // optional Github readme file
-        }
-    }
-}
+//subprojects {
+//    apply plugin: 'com.jfrog.bintray'
+//
+//    bintray {
+//        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+//        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+//
+//        configurations = ['archives']
+//
+//        // make files public ?
+//        publish = true
+//        // override existing artifacts?
+//        override = true
+//
+//        // metadata
+//        pkg {
+//            repo = 'main'           // your repository name
+//            name = 'cuba-pswdplus'  // package name - it will be created upon upload
+//            desc = 'Password history and expiration for CUBA Platform'  // optional package description
+//
+//            // organization name, if your repository is created inside an organization.
+//            // remove this parameter if you don't have an organization
+//            //userOrg = 'jupiter-org'
+//
+//            websiteUrl = 'https://github.com/pakuda/pswdplus'
+//            issueTrackerUrl = 'https://github.com/pakuda/pswdplus/issues'
+//            vcsUrl = 'https://github.com/pakuda/pswdplus.git' // mandatory for Open Source projects
+//
+//            licenses = ["Apache-2.0"]
+//            labels = ['cuba-platform', 'opensource']
+//
+//            githubRepo = 'pakuda/pswdplus' // optional Github repository
+//            githubReleaseNotesFile = 'README.md' // optional Github readme file
+//        }
+//    }
+//}

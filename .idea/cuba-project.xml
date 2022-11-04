@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CubaProjectState">
+    <option name="hasState" value="true" />
+    <option name="cubaModelState">
+      <CubaModelState>
+        <option name="repositories">
+          <list>
+            <RepositoryModelState>
+              <option name="url" value="https://dl.bintray.com/aleksey-stukalov/cuba-components" />
+              <option name="user" value="" />
+              <option name="pass" value="/awcoVvWe18=" />
+              <option name="stateVersion" value="2" />
+            </RepositoryModelState>
+            <RepositoryModelState>
+              <option name="url" value="https://repo.cuba-platform.com/content/groups/work" />
+              <option name="user" value="cuba" />
+              <option name="pass" value="3r6+CXYTcUs=" />
+              <option name="stateVersion" value="2" />
+            </RepositoryModelState>
+          </list>
+        </option>
+        <option name="appComponents">
+          <list>
+            <DependencyModelState>
+              <option name="group" value="com.haulmont.cuba" />
+              <option name="name" value="cuba-global" />
+              <option name="version" value="7.2.4" />
+            </DependencyModelState>
+          </list>
+        </option>
+        <option name="mavenLocal" value="true" />
+        <option name="artifactGroup" value="ar.com.osmosys.pswdplus" />
+        <option name="artifactVersion" value="1.1.0" />
+        <option name="tomcatDir" value="$PROJECT_DIR$/deploy/tomcat" />
+        <option name="gradleVersion" value="5.6.4" />
+        <option name="oracleSystemCredentials">
+          <map>
+            <entry key="_MAIN_">
+              <value>
+                <OracleSystemCredentialsModelState>
+                  <option name="systemUser" value="system" />
+                  <option name="systemPassword" value="manager" />
+                </OracleSystemCredentialsModelState>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="gradlePluginJarPath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.haulmont.gradle/cuba-plugin/7.2.4/db81f771c6af963d28e13a384719787f1b6c10d9/cuba-plugin-7.2.4.jar" />
+        <option name="projectPath" value="$PROJECT_DIR$" />
+      </CubaModelState>
+    </option>
+    <option name="dbArtifacts">
+      <map>
+        <entry key="com.haulmont.cuba" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.haulmont.cuba/cuba-core/7.2.4/1855f5c87b874abf53f6705786749e3eaeefcbe8/cuba-core-7.2.4-db.zip" />
+      </map>
+    </option>
+    <option name="gradleFilesCRC" value="4226538091" />
+  </component>
+</project>
