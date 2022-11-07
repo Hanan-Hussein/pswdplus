@@ -71,7 +71,7 @@ apply(plugin: 'cuba')
 
 cuba {
     artifact {
-        group = 'ar.com.osmosys.pswdplus'
+        group = 'com.github.Hanan-Hussein.pswdplus'
         version = '1.1.0'
         isSnapshot = false
     }
