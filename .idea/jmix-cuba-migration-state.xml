@@ -8,19 +8,19 @@
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-global" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="appComponent" />
             </DependencyModelState>
             <DependencyModelState>
               <option name="group" value="org.apache.tomcat" />
               <option name="name" value="tomcat" />
-              <option name="version" value="9.0.27" />
+              <option name="version" value="9.0.38" />
               <option name="configuration" value="tomcat" />
             </DependencyModelState>
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-core" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="compile" />
             </DependencyModelState>
             <DependencyModelState>
@@ -32,7 +32,7 @@
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-core" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="dbscripts" />
             </DependencyModelState>
             <DependencyModelState>
@@ -50,13 +50,13 @@
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-core-tests" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="testCompile" />
             </DependencyModelState>
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-shared-lib" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="testCompile" />
             </DependencyModelState>
             <DependencyModelState>
@@ -68,7 +68,7 @@
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-global" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="compile" />
             </DependencyModelState>
             <DependencyModelState>
@@ -86,37 +86,37 @@
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-web" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="compile" />
             </DependencyModelState>
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-web-toolkit" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="compile" />
             </DependencyModelState>
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-web" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="compileOnly" />
             </DependencyModelState>
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-web-tests" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="testCompile" />
             </DependencyModelState>
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-web" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="themes" />
             </DependencyModelState>
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-web" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
               <option name="configuration" value="webcontent" />
             </DependencyModelState>
           </list>

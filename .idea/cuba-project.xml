@@ -13,6 +13,12 @@
               <option name="stateVersion" value="2" />
             </RepositoryModelState>
             <RepositoryModelState>
+              <option name="url" value="https://jitpack.io" />
+              <option name="user" value="" />
+              <option name="pass" value="/awcoVvWe18=" />
+              <option name="stateVersion" value="2" />
+            </RepositoryModelState>
+            <RepositoryModelState>
               <option name="url" value="https://repo.cuba-platform.com/content/groups/work" />
               <option name="user" value="cuba" />
               <option name="pass" value="3r6+CXYTcUs=" />
@@ -25,7 +31,7 @@
             <DependencyModelState>
               <option name="group" value="com.haulmont.cuba" />
               <option name="name" value="cuba-global" />
-              <option name="version" value="7.2.4" />
+              <option name="version" value="7.2.18" />
             </DependencyModelState>
           </list>
         </option>
@@ -46,15 +52,15 @@
             </entry>
           </map>
         </option>
-        <option name="gradlePluginJarPath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.haulmont.gradle/cuba-plugin/7.2.4/db81f771c6af963d28e13a384719787f1b6c10d9/cuba-plugin-7.2.4.jar" />
+        <option name="gradlePluginJarPath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.haulmont.gradle/cuba-plugin/7.2.18/e161e45485bec3cecae6979ec99465bc0e153a5f/cuba-plugin-7.2.18.jar" />
         <option name="projectPath" value="$PROJECT_DIR$" />
       </CubaModelState>
     </option>
     <option name="dbArtifacts">
       <map>
-        <entry key="com.haulmont.cuba" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.haulmont.cuba/cuba-core/7.2.4/1855f5c87b874abf53f6705786749e3eaeefcbe8/cuba-core-7.2.4-db.zip" />
+        <entry key="com.haulmont.cuba" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.haulmont.cuba/cuba-core/7.2.18/99e51c4348aca57a49713c63e1f77adeff8ba63a/cuba-core-7.2.18-db.zip" />
       </map>
     </option>
-    <option name="gradleFilesCRC" value="4226538091" />
+    <option name="gradleFilesCRC" value="4733582072" />
   </component>
 </project>
