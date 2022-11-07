@@ -1,51 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <app-component xmlns="http://schemas.haulmont.com/cuba/app-component.xsd"
                dependsOn="com.haulmont.cuba">
-    <module blocks="*"
-            name="global">
-        <artifact appJar="true"
-                  name="pswdplus-global"/>
-        <property name="cuba.persistenceConfig"
-                  value="+ar/com/osmosys/pswdplus/persistence.xml"/>
-        <property name="cuba.metadataConfig"
-                  value="+ar/com/osmosys/pswdplus/metadata.xml"/>
-        <property name="cuba.viewsConfig"
-                  value="+ar/com/osmosys/pswdplus/views.xml"/>
+
+    <module name="global" blocks="*">
+        <artifact name="pswdplus-global" appJar="true"/>
+
+        <property name="cuba.persistenceConfig" value="+ar/com/osmosys/pswdplus/persistence.xml"/>
+        <property name="cuba.metadataConfig" value="+ar/com/osmosys/pswdplus/metadata.xml"/>
+        <property name="cuba.viewsConfig" value="+ar/com/osmosys/pswdplus/views.xml"/>
     </module>
-    <module blocks="core"
-            dependsOn="global"
-            name="core">
-        <artifact appJar="true"
-                  name="pswdplus-core"/>
-        <artifact classifier="db"
-                  configuration="dbscripts"
-                  ext="zip"
-                  name="pswdplus-core"/>
-        <property name="cuba.springContextConfig"
-                  value="+ar/com/osmosys/pswdplus/spring.xml"/>
-        <property name="cuba.mainMessagePack"
-                  value="+ar.com.osmosys.pswdplus.core"/>
+    <module name="core" dependsOn="global" blocks="core">
+        <artifact name="pswdplus-core" appJar="true"/>
+        <artifact name="pswdplus-core" classifier="db" ext="zip" configuration="dbscripts"/>
+
+        <property name="cuba.springContextConfig" value="+ar/com/osmosys/pswdplus/spring.xml"/>
+        <property name="cuba.mainMessagePack" value="+ar.com.osmosys.pswdplus.core"/>
     </module>
-    <module blocks="web"
-            dependsOn="global"
-            name="web">
-        <artifact appJar="true"
-                  name="pswdplus-web"/>
-        <artifact classifier="web"
-                  configuration="webcontent"
-                  ext="zip"
-                  name="pswdplus-web"/>
-        <property name="cuba.springContextConfig"
-                  value="+ar/com/osmosys/pswdplus/web-spring.xml"/>
-        <property name="cuba.dispatcherSpringContextConfig"
-                  value="+ar/com/osmosys/pswdplus/web-dispatcher-spring.xml"/>
-        <property name="cuba.windowConfig"
-                  value="+ar/com/osmosys/pswdplus/web-screens.xml"/>
-        <property name="cuba.menuConfig"
-                  value="+ar/com/osmosys/pswdplus/web-menu.xml"/>
-        <property name="cuba.permissionConfig"
-                  value="+ar/com/osmosys/pswdplus/web-permissions.xml"/>
-        <property name="cuba.mainMessagePack"
-                  value="+ar.com.osmosys.pswdplus.web"/>
+    <module name="web" dependsOn="global" blocks="web">
+        <artifact name="pswdplus-web" appJar="true"/>
+        <artifact name="pswdplus-web" classifier="web" ext="zip" configuration="webcontent"/>
+
+        <property name="cuba.springContextConfig" value="+ar/com/osmosys/pswdplus/web-spring.xml"/>
+        <property name="cuba.dispatcherSpringContextConfig" value="+ar/com/osmosys/pswdplus/web-dispatcher-spring.xml"/>
+        <property name="cuba.windowConfig" value="+ar/com/osmosys/pswdplus/web-screens.xml"/>
+        <property name="cuba.menuConfig" value="+ar/com/osmosys/pswdplus/web-menu.xml"/>
+        <property name="cuba.permissionConfig" value="+ar/com/osmosys/pswdplus/web-permissions.xml"/>
+        <property name="cuba.mainMessagePack" value="+ar.com.osmosys.pswdplus.web"/>
     </module>
 </app-component>
